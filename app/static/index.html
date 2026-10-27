@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF to Word — Convert PDF to Editable Word Online</title>
+<meta name="description" content="Convert PDF files into editable Word documents online for free. No sign-up needed, works in your browser.">
+<meta name="keywords" content="PDF to Word, convert PDF to Word, PDF to DOCX, free PDF to Word converter, convert PDF to editable Word online, Word to PDF, pdf em word">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Word — Convert PDF to Editable Word Online">
+<meta property="og:description" content="Convert PDF files into editable Word documents online for free. No sign-up needed, works in your browser.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PDF to Word — Convert PDF to Editable Word Online">
+<meta name="twitter:description" content="Convert PDF files into editable Word documents online for free. No sign-up needed, works in your browser.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"PDF2Word","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Convert PDF to Word, editable DOCX output, six interface languages","inLanguage":["en","zh","es","pt","fr","de"]}
+</script>
+<script src="config.js"></script>
+<style>
+  :root { --red:#e5322d; --red-dark:#c81f1a; --ink:#1f2937; --muted:#6b7280; --bg:#f4f5f7; --line:#e5e7eb; --green:#15803d; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); background:var(--bg); }
+  a { color:var(--red); text-decoration:none; }
+  header { background:#fff; box-shadow:0 1px 4px rgba(0,0,0,.08); position:sticky; top:0; z-index:10; }
+  .nav { max-width:960px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; gap:24px; }
+  .logo { font-weight:800; font-size:20px; color:var(--ink); }
+  .logo span { color:var(--red); }
+  .nav a.nl { color:var(--ink); font-size:15px; }
+  .nav a.nl:hover { color:var(--red); }
+  .spacer { flex:1; }
+  select#langSel { padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:#fff; font-size:14px; }
+  main { max-width:960px; margin:0 auto; padding:28px 16px 48px; }
+  h1 { text-align:center; font-size:32px; margin:8px 0 8px; }
+  .subtitle { text-align:center; color:var(--muted); font-size:17px; margin:0 0 24px; }
+  .mode-badge { display:block; width:fit-content; margin:0 auto 20px; padding:6px 14px; border-radius:999px; font-size:13px; background:#fff; border:1px solid var(--line); color:var(--muted); }
+  .mode-badge.server { color:var(--green); border-color:#bbf7d0; background:#f0fdf4; }
+  .card { background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,.08); padding:28px; }
+  .dropzone { border:2px dashed #d1d5db; border-radius:12px; padding:36px 16px; text-align:center; cursor:pointer; transition:.15s; }
+  .dropzone:hover, .dropzone.over { border-color:var(--red); background:#fef2f2; }
+  .dropzone .big { font-size:19px; font-weight:600; }
+  .dropzone .or { color:var(--muted); margin:10px 0; }
+  .btn { display:inline-block; border:0; cursor:pointer; border-radius:10px; padding:13px 26px; font-size:16px; font-weight:600; }
+  .btn-red { background:var(--red); color:#fff; }
+  .btn-red:hover { background:var(--red-dark); }
+  .btn-red:disabled { background:#fca5a5; cursor:not-allowed; }
+  .btn-ghost { background:#fff; color:var(--ink); border:1px solid var(--line); padding:10px 18px; font-size:14px; }
+  .btn-green { background:var(--green); color:#fff; padding:9px 16px; font-size:14px; }
+  .file-list { margin-top:20px; display:flex; flex-direction:column; gap:10px; }
+  .file-row { display:flex; align-items:center; gap:12px; border:1px solid var(--line); border-radius:10px; padding:12px 14px; flex-wrap:wrap; }
+  .file-row .fname { font-weight:600; word-break:break-all; }
+  .file-row .fsize { color:var(--muted); font-size:13px; }
+  .file-row .fstatus { font-size:13px; color:var(--muted); }
+  .file-row .fstatus.done { color:var(--green); font-weight:600; }
+  .file-row .fstatus.failed { color:var(--red); font-weight:600; }
+  .file-row .grow { flex:1; }
+  .actions { margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .note { margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:13px 16px; font-size:14px; }
+  .note b { display:block; margin-bottom:4px; }
+  h2.sec { font-size:24px; margin:40px 0 16px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  @media (max-width:700px) { .grid3, .grid2 { grid-template-columns:1fr; } h1 { font-size:26px; } }
+  .box { background:#fff; border-radius:12px; padding:18px; box-shadow:0 1px 6px rgba(0,0,0,.06); }
+  .box h3 { margin:0 0 8px; font-size:17px; }
+  .box p { margin:0; color:var(--muted); font-size:14px; line-height:1.6; }
+  .faq-item { background:#fff; border-radius:12px; padding:18px; margin-bottom:12px; box-shadow:0 1px 6px rgba(0,0,0,.06); }
+  .faq-item h3 { margin:0 0 8px; font-size:16px; }
+  .faq-item p { margin:0; color:var(--muted); font-size:14px; line-height:1.7; }
+  footer { text-align:center; color:var(--muted); font-size:13px; padding:24px 16px 40px; line-height:1.7; }
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">PDF<span>2</span>Word</div>
+    <a class="nl" href="#tool" data-i18n="navConvert">Converter</a>
+    <a class="nl" href="#how" data-i18n="navHow">How it works</a>
+    <a class="nl" href="#faq" data-i18n="navFaq">FAQ</a>
+    <div class="spacer"></div>
+    <select id="langSel" aria-label="Language">
+      <option value="en">English</option>
+      <option value="zh">简体中文</option>
+      <option value="es">Español</option>
+      <option value="pt">Português</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+    </select>
+  </div>
+</header>
+<main>
+  <h1 data-i18n="title">PDF to Word Converter</h1>
+  <p class="subtitle" data-i18n="subtitle">Convert your PDF files into editable Word documents. Fast, free, and no sign-up needed.</p>
+  <div id="modeBadge" class="mode-badge" data-i18n="modeChecking">Detecting conversion mode…</div>
+
+  <section class="card" id="tool">
+    <div class="dropzone" id="dropzone">
+      <div class="big" data-i18n="dropTitle">Drop PDF files here</div>
+      <div class="or" data-i18n="dropSub">or</div>
+      <button class="btn btn-red" id="pickBtn" type="button" data-i18n="selectBtn">Select PDF files</button>
+      <input class="hidden" type="file" id="fileInput" accept=".pdf,application/pdf" multiple>
+    </div>
+    <div class="file-list" id="fileList"></div>
+    <div class="actions">
+      <button class="btn btn-red" id="convertBtn" type="button" disabled data-i18n="convertBtn">Convert to Word</button>
+      <button class="btn btn-ghost hidden" id="clearBtn" type="button" data-i18n="clearBtn">Clear all</button>
+      <span id="overallStatus" style="color:var(--muted);font-size:14px;"></span>
+    </div>
+    <div class="note"><b data-i18n="ocrTitle">About scanned PDFs</b><span data-i18n="ocrText">This tool works with PDFs that contain selectable text. Scanned PDFs (pages that are just images) need OCR, which is not supported yet.</span></div>
+  </section>
+
+  <h2 class="sec" id="how" data-i18n="stepsTitle">How to convert PDF to Word</h2>
+  <div class="grid3">
+    <div class="box"><h3 data-i18n="step1Title">1. Select your PDF</h3><p data-i18n="step1Text">Drag files into the box above, or click to browse your computer.</p></div>
+    <div class="box"><h3 data-i18n="step2Title">2. Convert</h3><p data-i18n="step2Text">Click Convert to Word. Each file is converted one by one.</p></div>
+    <div class="box"><h3 data-i18n="step3Title">3. Download</h3><p data-i18n="step3Text">Download the editable .docx file and open it in Word, WPS or Google Docs.</p></div>
+  </div>
+
+  <h2 class="sec" data-i18n="featTitle">Why use this converter?</h2>
+  <div class="grid2">
+    <div class="box"><h3 data-i18n="feat1Title">Free to use</h3><p data-i18n="feat1Text">Convert PDF to Word without creating an account.</p></div>
+    <div class="box"><h3 data-i18n="feat2Title">Files are deleted</h3><p data-i18n="feat2Text">Uploaded files and results are deleted from the server after conversion.</p></div>
+    <div class="box"><h3 data-i18n="feat3Title">Editable output</h3><p data-i18n="feat3Text">The .docx opens in Word, WPS or Google Docs and you can edit the text directly.</p></div>
+    <div class="box"><h3 data-i18n="feat4Title">6 languages</h3><p data-i18n="feat4Text">The whole interface is available in six languages.</p></div>
+  </div>
+
+  <h2 class="sec" id="faq" data-i18n="faqTitle">Frequently asked questions</h2>
+  <div class="faq-item"><h3 data-i18n="q1">Will the layout stay exactly the same?</h3><p data-i18n="a1">For simple single-column documents the result is usually very close. Complex multi-column layouts, tables and formulas may shift and need manual touch-ups — PDF to Word is a re-layout, not a perfect copy.</p></div>
+  <div class="faq-item"><h3 data-i18n="q2">Do scanned PDFs work?</h3><p data-i18n="a2">Not yet. Scanned pages are images without selectable text, so they need OCR first. A text-based PDF is required for now.</p></div>
+  <div class="faq-item"><h3 data-i18n="q3">Is there a file size limit?</h3><p data-i18n="a3">Server conversion accepts files up to 50 MB. Browser conversion depends on your device memory.</p></div>
+  <div class="faq-item"><h3 data-i18n="q4">Are my files kept on the server?</h3><p data-i18n="a4">No. Uploaded PDFs and converted files are deleted automatically after your download finishes.</p></div>
+  <div class="faq-item"><h3 data-i18n="q5">Which languages does the interface support?</h3><p data-i18n="a5">English, 简体中文， Español, Português, Français and Deutsch. Use the language menu at the top right.</p></div>
+</main>
+<footer><span data-i18n="footerText">Built with the open-source pdf2docx engine. PDF to Word conversion re-creates the layout, so complex documents may need manual fixes.</span></footer>
+<script>
+var I18N = {
+en: {
+  navConvert: "Converter", navHow: "How it works", navFaq: "FAQ",
+  title: "PDF to Word Converter",
+  subtitle: "Convert your PDF files into editable Word documents. Fast, free, and no sign-up needed.",
+  modeChecking: "Detecting conversion mode…",
+  modeServer: "Server conversion (high fidelity)",
+  modeBrowser: "Browser conversion (quick, text-focused)",
+  dropTitle: "Drop PDF files here", dropSub: "or", selectBtn: "Select PDF files",
+  convertBtn: "Convert to Word", converting: "Converting…",
+  downloadBtn: "Download Word", clearBtn: "Clear all",
+  statusWaiting: "Waiting", statusConverting: "Converting…", statusDone: "Done", statusFailed: "Failed",
+  ocrTitle: "About scanned PDFs",
+  ocrText: "This tool works with PDFs that contain selectable text. Scanned PDFs (pages that are just images) need OCR, which is not supported yet.",
+  stepsTitle: "How to convert PDF to Word",
+  step1Title: "1. Select your PDF", step1Text: "Drag files into the box above, or click to browse your computer.",
+  step2Title: "2. Convert", step2Text: "Click Convert to Word. Each file is converted one by one.",
+  step3Title: "3. Download", step3Text: "Download the editable .docx file and open it in Word, WPS or Google Docs.",
+  featTitle: "Why use this converter?",
+  feat1Title: "Free to use", feat1Text: "Convert PDF to Word without creating an account.",
+  feat2Title: "Files are deleted", feat2Text: "Uploaded files and results are deleted from the server after conversion.",
+  feat3Title: "Editable output", feat3Text: "The .docx opens in Word, WPS or Google Docs and you can edit the text directly.",
+  feat4Title: "6 languages", feat4Text: "The whole interface is available in six languages.",
+  faqTitle: "Frequently asked questions",
+  q1: "Will the layout stay exactly the same?",
+  a1: "For simple single-column documents the result is usually very close. Complex multi-column layouts, tables and formulas may shift and need manual touch-ups — PDF to Word is a re-layout, not a perfect copy.",
+  q2: "Do scanned PDFs work?",
+  a2: "Not yet. Scanned pages are images without selectable text, so they need OCR first. A text-based PDF is required for now.",
+  q3: "Is there a file size limit?",
+  a3: "Server conversion accepts files up to 50 MB. Browser conversion depends on your device memory.",
+  q4: "Are my files kept on the server?",
+  a4: "No. Uploaded PDFs and converted files are deleted automatically after your download finishes.",
+  q5: "Which languages does the interface support?",
+  a5: "English, 简体中文， Español, Português, Français and Deutsch. Use the language menu at the top right.",
+  footerText: "Built with the open-source pdf2docx engine. PDF to Word conversion re-creates the layout, so complex documents may need manual fixes.",
+  errNotPdf: "Only PDF files are accepted.", errTooBig: "File exceeds 50 MB.",
+  errNoFile: "Please add at least one PDF file first.",
+  errConvertFailed: "Conversion failed. Please try another file.",
+  errLibs: "Browser conversion needs to load online libraries. Please check your connection and try again.",
+  docTitle: "PDF to Word — Convert PDF to Editable Word Online",
+  docDesc: "Convert PDF files into editable Word documents online for free. No sign-up needed, works in your browser.",
+  keywords: "PDF to Word, convert PDF to Word, PDF to DOCX, free PDF to Word converter, convert PDF to editable Word online, Word to PDF, pdf em word"
+},
+zh: {
+  navConvert: "转换器", navHow: "使用方法", navFaq: "常见问题",
+  title: "PDF 转 Word 转换器",
+  subtitle: "把 PDF 文件转换成可编辑的 Word 文档，免费、快速、无需注册。",
+  modeChecking: "正在检测转换模式…",
+  modeServer: "服务器转换（高保真）",
+  modeBrowser: "浏览器转换（快速、侧重文字）",
+  dropTitle: "把 PDF 文件拖到这里", dropSub: "或者", selectBtn: "选择 PDF 文件",
+  convertBtn: "转换成 Word", converting: "转换中…",
+  downloadBtn: "下载 Word", clearBtn: "全部清除",
+  statusWaiting: "等待中", statusConverting: "转换中…", statusDone: "已完成", statusFailed: "失败",
+  ocrTitle: "关于扫描件 PDF",
+  ocrText: "本站只支持含可选文字的 PDF。扫描件（页面只是图片、选不中文字）需要先 OCR，目前暂不支持。",
+  stepsTitle: "PDF 转 Word 怎么用",
+  step1Title: "1. 选择 PDF", step1Text: "把文件拖进上方框里，或者点按钮从电脑里选。",
+  step2Title: "2. 开始转换", step2Text: "点“转换成 Word”，文件会逐个转换。",
+  step3Title: "3. 下载", step3Text: "下载可编辑的 .docx 文件，用 Word、WPS 或 Google Docs 打开就能改。",
+  featTitle: "为什么用这个转换器？",
+  feat1Title: "免费使用", feat1Text: "不用注册账号就能把 PDF 转成 Word。",
+  feat2Title: "文件会自动删除", feat2Text: "上传的 PDF 和转换结果在下载完成后会从服务器删除。",
+  feat3Title: "结果可编辑", feat3Text: "生成的 .docx 能在 Word、WPS 或 Google Docs 里直接改文字。",
+  feat4Title: "6 种语言", feat4Text: "整个界面支持 6 种语言切换。",
+  faqTitle: "常见问题",
+  q1: "版式能和原来一模一样吗？",
+  a1: "简单的单栏文档通常很接近。复杂的多栏版式、表格和公式可能会走位，需要手动调整——PDF 转 Word 本质是重新排版，不是完美复制。",
+  q2: "扫描件 PDF 能转吗？",
+  a2: "暂时不行。扫描页是图片、没有可选文字，需要先 OCR，目前还不支持。",
+  q3: "文件大小有限制吗？",
+  a3: "服务器转换单个文件上限 50MB；浏览器转换取决于你设备的内存。",
+  q4: "我的文件会留在服务器上吗？",
+  a4: "不会。上传的 PDF 和转换结果在下载完成后会自动删除。",
+  q5: "界面支持哪些语言？",
+  a5: "英语、简体中文、西班牙语、葡萄牙语、法语和德语，右上角可以切换。",
+  footerText: "基于开源 pdf2docx 引擎。PDF 转 Word 是重新排版，复杂文档可能需要手动修正。",
+  errNotPdf: "只接受 PDF 文件。", errTooBig: "文件超过 50MB。",
+  errNoFile: "请先添加至少一个 PDF 文件。",
+  errConvertFailed: "转换失败，请换个文件再试。",
+  errLibs: "浏览器转换需要加载在线库，请检查网络后再试。",
+  docTitle: "PDF 转 Word — 免费在线把 PDF 转换成可编辑 Word",
+  docDesc: "免费在线把 PDF 文件转换成可编辑的 Word 文档，无需注册，打开浏览器就能用。",
+  keywords: "PDF转Word, PDF转换成Word, PDF转DOCX, 免费PDF转Word, pdf转word在线, PDF转可编辑Word, Word to PDF, pdf em word"
+},
+es: {
+  navConvert: "Convertidor", navHow: "Cómo funciona", navFaq: "Preguntas",
+  title: "Convertidor de PDF a Word",
+  subtitle: "Convierte tus archivos PDF en documentos de Word editables. Rápido, gratis y sin registro.",
+  modeChecking: "Detectando el modo de conversión…",
+  modeServer: "Conversión en el servidor (alta fidelidad)",
+  modeBrowser: "Conversión en el navegador (rápida, centrada en el texto)",
+  dropTitle: "Suelta aquí tus archivos PDF", dropSub: "o", selectBtn: "Seleccionar archivos PDF",
+  convertBtn: "Convertir a Word", converting: "Convirtiendo…",
+  downloadBtn: "Descargar Word", clearBtn: "Borrar todo",
+  statusWaiting: "En espera", statusConverting: "Convirtiendo…", statusDone: "Listo", statusFailed: "Error",
+  ocrTitle: "Sobre los PDF escaneados",
+  ocrText: "Esta herramienta funciona con PDF que contienen texto seleccionable. Los PDF escaneados (páginas que son solo imágenes) necesitan OCR, que aún no está disponible.",
+  stepsTitle: "Cómo convertir PDF a Word",
+  step1Title: "1. Elige tu PDF", step1Text: "Arrastra los archivos al cuadro de arriba o haz clic para buscarlos en tu equipo.",
+  step2Title: "2. Convierte", step2Text: "Haz clic en Convertir a Word. Cada archivo se convierte uno por uno.",
+  step3Title: "3. Descarga", step3Text: "Descarga el archivo .docx editable y ábrelo en Word, WPS o Google Docs.",
+  featTitle: "¿Por qué usar este convertidor?",
+  feat1Title: "Gratis", feat1Text: "Convierte PDF a Word sin crear una cuenta.",
+  feat2Title: "Los archivos se eliminan", feat2Text: "Los archivos subidos y los resultados se eliminan del servidor después de la conversión.",
+  feat3Title: "Resultado editable", feat3Text: "El .docx se abre en Word, WPS o Google Docs y puedes editar el texto directamente.",
+  feat4Title: "6 idiomas", feat4Text: "Toda la interfaz está disponible en seis idiomas.",
+  faqTitle: "Preguntas frecuentes",
+  q1: "¿El diseño quedará exactamente igual?",
+  a1: "En documentos sencillos de una columna, el resultado suele ser muy parecido. Los diseños complejos de varias columnas, tablas y fórmulas pueden desplazarse y necesitar retoques: convertir PDF a Word es una nueva maquetación, no una copia perfecta.",
+  q2: "¿Funcionan los PDF escaneados?",
+  a2: "Todavía no. Las páginas escaneadas son imágenes sin texto seleccionable y necesitan OCR primero. Por ahora se requiere un PDF con texto.",
+  q3: "¿Hay un límite de tamaño?",
+  a3: "La conversión en el servidor acepta archivos de hasta 50 MB. La conversión en el navegador depende de la memoria de tu dispositivo.",
+  q4: "¿Mis archivos quedan en el servidor?",
+  a4: "No. Los PDF subidos y los archivos convertidos se eliminan automáticamente cuando termina tu descarga.",
+  q5: "¿Qué idiomas admite la interfaz?",
+  a5: "Inglés, chino simplificado, español, portugués, francés y alemán. Cambia el idioma en el menú superior derecho.",
+  footerText: "Creado con el motor de código abierto pdf2docx. Convertir PDF a Word recrea el diseño, así que los documentos complejos pueden necesitar correcciones manuales.",
+  errNotPdf: "Solo se aceptan archivos PDF.", errTooBig: "El archivo supera los 50 MB.",
+  errNoFile: "Añade al menos un archivo PDF primero.",
+  errConvertFailed: "La conversión falló. Prueba con otro archivo.",
+  errLibs: "La conversión en el navegador necesita cargar librerías en línea. Revisa tu conexión e inténtalo de nuevo.",
+  docTitle: "PDF a Word — Convierte PDF a Word editable en línea",
+  docDesc: "Convierte archivos PDF en documentos de Word editables en línea y gratis, sin registro.",
+  keywords: "PDF a Word, convertir PDF a Word, PDF a DOCX, convertir PDF a Word gratis, convertidor PDF a Word online, Word to PDF, pdf em word"
+},
+pt: {
+  navConvert: "Conversor", navHow: "Como funciona", navFaq: "Perguntas",
+  title: "Conversor de PDF para Word",
+  subtitle: "Transforme seus arquivos PDF em documentos do Word editáveis. Rápido, gratuito e sem cadastro.",
+  modeChecking: "Detectando o modo de conversão…",
+  modeServer: "Conversão no servidor (alta fidelidade)",
+  modeBrowser: "Conversão no navegador (rápida, focada em texto)",
+  dropTitle: "Solte os arquivos PDF aqui", dropSub: "ou", selectBtn: "Selecionar arquivos PDF",
+  convertBtn: "Converter para Word", converting: "Convertendo…",
+  downloadBtn: "Baixar Word", clearBtn: "Limpar tudo",
+  statusWaiting: "Aguardando", statusConverting: "Convertendo…", statusDone: "Pronto", statusFailed: "Falha",
+  ocrTitle: "Sobre PDFs digitalizados",
+  ocrText: "Esta ferramenta funciona com PDFs que contêm texto selecionável. PDFs digitalizados (páginas que são apenas imagens) precisam de OCR, que ainda não é suportado.",
+  stepsTitle: "Como converter PDF para Word",
+  step1Title: "1. Escolha seu PDF", step1Text: "Arraste os arquivos para a caixa acima ou clique para procurá-los no seu computador.",
+  step2Title: "2. Converta", step2Text: "Clique em Converter para Word. Cada arquivo é convertido um por um.",
+  step3Title: "3. Baixe", step3Text: "Baixe o arquivo .docx editável e abra no Word, WPS ou Google Docs.",
+  featTitle: "Por que usar este conversor?",
+  feat1Title: "Gratuito", feat1Text: "Converta PDF para Word sem criar uma conta.",
+  feat2Title: "Arquivos são excluídos", feat2Text: "Os arquivos enviados e os resultados são excluídos do servidor após a conversão.",
+  feat3Title: "Resultado editável", feat3Text: "O .docx abre no Word, WPS ou Google Docs e você pode editar o texto diretamente.",
+  feat4Title: "6 idiomas", feat4Text: "Toda a interface está disponível em seis idiomas.",
+  faqTitle: "Perguntas frequentes",
+  q1: "O layout ficará exatamente igual?",
+  a1: "Em documentos simples de uma coluna, o resultado costuma ser bem parecido. Layouts complexos de várias colunas, tabelas e fórmulas podem se deslocar e precisar de ajustes: converter PDF para Word é uma nova diagramação, não uma cópia perfeita.",
+  q2: "PDFs digitalizados funcionam?",
+  a2: "Ainda não. Páginas digitalizadas são imagens sem texto selecionável e precisam de OCR antes. Por enquanto, é necessário um PDF com texto.",
+  q3: "Há limite de tamanho?",
+  a3: "A conversão no servidor aceita arquivos de até 50 MB. A conversão no navegador depende da memória do seu dispositivo.",
+  q4: "Meus arquivos ficam no servidor?",
+  a4: "Não. Os PDFs enviados e os arquivos convertidos são excluídos automaticamente quando o seu download termina.",
+  q5: "Quais idiomas a interface suporta?",
+  a5: "Inglês, chinês simplificado, espanhol, português, francês e alemão. Troque o idioma no menu do canto superior direito.",
+  footerText: "Feito com o motor de código aberto pdf2docx. Converter PDF para Word recria o layout, então documentos complexos podem precisar de correções manuais.",
+  errNotPdf: "Somente arquivos PDF são aceitos.", errTooBig: "O arquivo excede 50 MB.",
+  errNoFile: "Adicione pelo menos um arquivo PDF primeiro.",
+  errConvertFailed: "A conversão falhou. Tente outro arquivo.",
+  errLibs: "A conversão no navegador precisa carregar bibliotecas on-line. Verifique sua conexão e tente novamente.",
+  docTitle: "PDF para Word — Converta PDF em Word editável on-line",
+  docDesc: "Converta arquivos PDF em documentos do Word editáveis on-line e grátis, sem cadastro.",
+  keywords: "PDF para Word, converter PDF para Word, transformar pdf em word, pdf em word, PDF para DOCX, conversor PDF para Word grátis, Word to PDF"
+},
+fr: {
+  navConvert: "Convertisseur", navHow: "Mode d'emploi", navFaq: "FAQ",
+  title: "Convertisseur PDF vers Word",
+  subtitle: "Convertissez vos fichiers PDF en documents Word modifiables. Rapide, gratuit, sans inscription.",
+  modeChecking: "Détection du mode de conversion…",
+  modeServer: "Conversion sur le serveur (haute fidélité)",
+  modeBrowser: "Conversion dans le navigateur (rapide, axée sur le texte)",
+  dropTitle: "Déposez vos fichiers PDF ici", dropSub: "ou", selectBtn: "Sélectionner des fichiers PDF",
+  convertBtn: "Convertir en Word", converting: "Conversion en cours…",
+  downloadBtn: "Télécharger Word", clearBtn: "Tout effacer",
+  statusWaiting: "En attente", statusConverting: "Conversion en cours…", statusDone: "Terminé", statusFailed: "Échec",
+  ocrTitle: "À propos des PDF numérisés",
+  ocrText: "Cet outil fonctionne avec les PDF contenant du texte sélectionnable. Les PDF numérisés (pages qui ne sont que des images) nécessitent l'OCR, qui n'est pas encore pris en charge.",
+  stepsTitle: "Comment convertir un PDF en Word",
+  step1Title: "1. Choisissez votre PDF", step1Text: "Glissez les fichiers dans le cadre ci-dessus, ou cliquez pour les chercher sur votre ordinateur.",
+  step2Title: "2. Convertissez", step2Text: "Cliquez sur Convertir en Word. Chaque fichier est converti un par un.",
+  step3Title: "3. Téléchargez", step3Text: "Téléchargez le fichier .docx modifiable et ouvrez-le dans Word, WPS ou Google Docs.",
+  featTitle: "Pourquoi utiliser ce convertisseur ?",
+  feat1Title: "Gratuit", feat1Text: "Convertissez un PDF en Word sans créer de compte.",
+  feat2Title: "Fichiers supprimés", feat2Text: "Les fichiers envoyés et les résultats sont supprimés du serveur après la conversion.",
+  feat3Title: "Résultat modifiable", feat3Text: "Le .docx s'ouvre dans Word, WPS ou Google Docs et vous pouvez modifier le texte directement.",
+  feat4Title: "6 langues", feat4Text: "Toute l'interface est disponible en six langues.",
+  faqTitle: "Questions fréquentes",
+  q1: "La mise en page restera-t-elle exactement identique ?",
+  a1: "Pour les documents simples à une colonne, le résultat est généralement très proche. Les mises en page complexes à plusieurs colonnes, les tableaux et les formules peuvent bouger et demander des retouches : convertir un PDF en Word, c'est remettre en page, pas copier parfaitement.",
+  q2: "Les PDF numérisés fonctionnent-ils ?",
+  a2: "Pas encore. Les pages numérisées sont des images sans texte sélectionnable et nécessitent d'abord l'OCR. Un PDF avec du texte est requis pour le moment.",
+  q3: "Y a-t-il une limite de taille ?",
+  a3: "La conversion sur le serveur accepte les fichiers jusqu'à 50 Mo. La conversion dans le navigateur dépend de la mémoire de votre appareil.",
+  q4: "Mes fichiers restent-ils sur le serveur ?",
+  a4: "Non. Les PDF envoyés et les fichiers convertis sont supprimés automatiquement une fois votre téléchargement terminé.",
+  q5: "Quelles langues l'interface prend-elle en charge ?",
+  a5: "Anglais, chinois simplifié, espagnol, portugais, français et allemand. Changez de langue dans le menu en haut à droite.",
+  footerText: "Basé sur le moteur open source pdf2docx. Convertir un PDF en Word recrée la mise en page, les documents complexes peuvent donc nécessiter des corrections manuelles.",
+  errNotPdf: "Seuls les fichiers PDF sont acceptés.", errTooBig: "Le fichier dépasse 50 Mo.",
+  errNoFile: "Ajoutez d'abord au moins un fichier PDF.",
+  errConvertFailed: "La conversion a échoué. Essayez un autre fichier.",
+  errLibs: "La conversion dans le navigateur doit charger des bibliothèques en ligne. Vérifiez votre connexion et réessayez.",
+  docTitle: "PDF vers Word — Convertissez un PDF en Word modifiable en ligne",
+  docDesc: "Convertissez des fichiers PDF en documents Word modifiables en ligne, gratuitement et sans inscription.",
+  keywords: "PDF vers Word, convertir PDF en Word, PDF en DOCX, convertisseur PDF vers Word gratuit, PDF en Word modifiable, Word to PDF, pdf em word"
+},
+de: {
+  navConvert: "Konverter", navHow: "So funktioniert's", navFaq: "FAQ",
+  title: "PDF-zu-Word-Konverter",
+  subtitle: "Wandeln Sie Ihre PDF-Dateien in bearbeitbare Word-Dokumente um. Schnell, kostenlos und ohne Anmeldung.",
+  modeChecking: "Konvertierungsmodus wird erkannt…",
+  modeServer: "Server-Konvertierung (hohe Wiedergabetreue)",
+  modeBrowser: "Browser-Konvertierung (schnell, textorientiert)",
+  dropTitle: "PDF-Dateien hierher ziehen", dropSub: "oder", selectBtn: "PDF-Dateien auswählen",
+  convertBtn: "In Word umwandeln", converting: "Wird umgewandelt…",
+  downloadBtn: "Word herunterladen", clearBtn: "Alles löschen",
+  statusWaiting: "Wartend", statusConverting: "Wird umgewandelt…", statusDone: "Fertig", statusFailed: "Fehlgeschlagen",
+  ocrTitle: "Über gescannte PDFs",
+  ocrText: "Dieses Tool arbeitet mit PDFs, die auswählbaren Text enthalten. Gescannte PDFs (Seiten, die nur Bilder sind) benötigen OCR, das noch nicht unterstützt wird.",
+  stepsTitle: "So wandeln Sie PDF in Word um",
+  step1Title: "1. PDF wählen", step1Text: "Ziehen Sie die Dateien in das Feld oben oder klicken Sie, um sie auf Ihrem Computer zu suchen.",
+  step2Title: "2. Umwandeln", step2Text: "Klicken Sie auf In Word umwandeln. Jede Datei wird einzeln umgewandelt.",
+  step3Title: "3. Herunterladen", step3Text: "Laden Sie die bearbeitbare .docx-Datei herunter und öffnen Sie sie in Word, WPS oder Google Docs.",
+  featTitle: "Warum diesen Konverter nutzen?",
+  feat1Title: "Kostenlos", feat1Text: "PDF in Word umwandeln, ohne ein Konto zu erstellen.",
+  feat2Title: "Dateien werden gelöscht", feat2Text: "Hochgeladene Dateien und Ergebnisse werden nach der Konvertierung vom Server gelöscht.",
+  feat3Title: "Bearbeitbares Ergebnis", feat3Text: "Die .docx lässt sich in Word, WPS oder Google Docs öffnen und der Text direkt bearbeiten.",
+  feat4Title: "6 Sprachen", feat4Text: "Die gesamte Oberfläche ist in sechs Sprachen verfügbar.",
+  faqTitle: "Häufige Fragen",
+  q1: "Bleibt das Layout exakt gleich?",
+  a1: "Bei einfachen einspaltigen Dokumenten ist das Ergebnis meist sehr ähnlich. Komplexe mehrspaltige Layouts, Tabellen und Formeln können sich verschieben und müssen nachbearbeitet werden – PDF zu Word ist ein neues Layout, keine perfekte Kopie.",
+  q2: "Funktionieren gescannte PDFs?",
+  a2: "Noch nicht. Gescannte Seiten sind Bilder ohne auswählbaren Text und benötigen zuerst OCR. Vorerst ist ein PDF mit Text erforderlich.",
+  q3: "Gibt es eine Größenbegrenzung?",
+  a3: "Die Server-Konvertierung akzeptiert Dateien bis zu 50 MB. Die Browser-Konvertierung hängt vom Speicher Ihres Geräts ab.",
+  q4: "Bleiben meine Dateien auf dem Server?",
+  a4: "Nein. Hochgeladene PDFs und umgewandelte Dateien werden automatisch gelöscht, sobald Ihr Download abgeschlossen ist.",
+  q5: "Welche Sprachen unterstützt die Oberfläche?",
+  a5: "Englisch, vereinfachtes Chinesisch, Spanisch, Portugiesisch, Französisch und Deutsch. Wechseln Sie die Sprache über das Menü oben rechts.",
+  footerText: "Basiert auf der Open-Source-Engine pdf2docx. PDF zu Word erstellt das Layout neu, komplexe Dokumente benötigen daher möglicherweise manuelle Korrekturen.",
+  errNotPdf: "Nur PDF-Dateien werden akzeptiert.", errTooBig: "Die Datei überschreitet 50 MB.",
+  errNoFile: "Fügen Sie zuerst mindestens eine PDF-Datei hinzu.",
+  errConvertFailed: "Die Konvertierung ist fehlgeschlagen. Versuchen Sie es mit einer anderen Datei.",
+  errLibs: "Die Browser-Konvertierung muss Online-Bibliotheken laden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+  docTitle: "PDF zu Word — PDF kostenlos online in bearbeitbares Word umwandeln",
+  docDesc: "Wandeln Sie PDF-Dateien kostenlos online in bearbeitbare Word-Dokumente um, ohne Anmeldung.",
+  keywords: "PDF zu Word, PDF in Word umwandeln, PDF zu DOCX, PDF zu Word Konverter kostenlos, PDF in bearbeitbares Word umwandeln, Word to PDF, pdf em word"
+}
+};
+var API_BASE = (typeof window.API_BASE === "string") ? window.API_BASE : "";
+var MAX_BYTES = 50 * 1024 * 1024;
+var curLang = "en";
+var serverMode = null; // true = backend pdf2docx, false = browser fallback
+var files = []; // {file, status: waiting|converting|done|failed, url, outName, error}
+var converting = false;
+
+function t(key) {
+  var d = I18N[curLang] || I18N.en;
+  return d[key] !== undefined ? d[key] : (I18N.en[key] || key);
+}
+
+function detectLang() {
+  try {
+    var saved = localStorage.getItem("pdf2word-lang");
+    if (saved && I18N[saved]) return saved;
+  } catch (e) {}
+  var l = (navigator.language || "en").toLowerCase();
+  if (l.indexOf("zh") === 0) return "zh";
+  if (l.indexOf("es") === 0) return "es";
+  if (l.indexOf("pt") === 0) return "pt";
+  if (l.indexOf("fr") === 0) return "fr";
+  if (l.indexOf("de") === 0) return "de";
+  return "en";
+}
+
+function applyLang(lang) {
+  curLang = I18N[lang] ? lang : "en";
+  document.documentElement.lang = curLang;
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    el.textContent = t(el.getAttribute("data-i18n"));
+  });
+  document.title = t("docTitle");
+  var md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute("content", t("docDesc"));
+  var kw = document.querySelector('meta[name="keywords"]');
+  if (kw) kw.setAttribute("content", t("keywords"));
+  var ogT = document.querySelector('meta[property="og:title"]');
+  if (ogT) ogT.setAttribute("content", t("docTitle"));
+  var ogD = document.querySelector('meta[property="og:description"]');
+  if (ogD) ogD.setAttribute("content", t("docDesc"));
+  var ogL = document.querySelector('meta[property="og:locale"]');
+  var LOCALE = { en: "en_US", zh: "zh_CN", es: "es_ES", pt: "pt_BR", fr: "fr_FR", de: "de_DE" };
+  if (ogL) ogL.setAttribute("content", LOCALE[curLang] || "en_US");
+  var twT = document.querySelector('meta[name="twitter:title"]');
+  if (twT) twT.setAttribute("content", t("docTitle"));
+  var twD = document.querySelector('meta[name="twitter:description"]');
+  if (twD) twD.setAttribute("content", t("docDesc"));
+  try { localStorage.setItem("pdf2word-lang", curLang); } catch (e) {}
+  renderList();
+  updateModeBadge();
+}
+
+function updateModeBadge() {
+  var b = document.getElementById("modeBadge");
+  if (serverMode === null) { b.textContent = t("modeChecking"); b.className = "mode-badge"; }
+  else if (serverMode) { b.textContent = t("modeServer"); b.className = "mode-badge server"; }
+  else { b.textContent = t("modeBrowser"); b.className = "mode-badge"; }
+}
+
+function fmtSize(n) {
+  if (n < 1024) return n + " B";
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + " KB";
+  return (n / 1024 / 1024).toFixed(1) + " MB";
+}
+
+function stemOf(name) { return name.replace(/\.pdf$/i, ""); }
+
+function renderList() {
+  var list = document.getElementById("fileList");
+  list.innerHTML = "";
+  files.forEach(function (f, i) {
+    var row = document.createElement("div");
+    row.className = "file-row";
+    var info = document.createElement("div");
+    var nm = document.createElement("div"); nm.className = "fname"; nm.textContent = f.file.name;
+    var sz = document.createElement("div"); sz.className = "fsize"; sz.textContent = fmtSize(f.file.size);
+    info.appendChild(nm); info.appendChild(sz);
+    var st = document.createElement("span"); st.className = "fstatus " + f.status;
+    st.textContent = f.status === "done" ? t("statusDone") : f.status === "failed" ? (f.error || t("statusFailed")) : f.status === "converting" ? t("statusConverting") : t("statusWaiting");
+    var grow = document.createElement("div"); grow.className = "grow";
+    row.appendChild(info); row.appendChild(st); row.appendChild(grow);
+    if (f.status === "done" && f.url) {
+      var dl = document.createElement("a"); dl.className = "btn btn-green"; dl.href = f.url; dl.download = f.outName; dl.textContent = t("downloadBtn");
+      row.appendChild(dl);
+    }
+    if (f.status !== "converting") {
+      var rm = document.createElement("button"); rm.className = "btn btn-ghost"; rm.type = "button"; rm.textContent = "×";
+      rm.onclick = function () { files.splice(i, 1); renderList(); updateConvertBtn(); };
+      row.appendChild(rm);
+    }
+    list.appendChild(row);
+  });
+  document.getElementById("clearBtn").classList.toggle("hidden", files.length === 0);
+  updateConvertBtn();
+}
+
+function updateConvertBtn() {
+  var btn = document.getElementById("convertBtn");
+  var anyTodo = files.some(function (f) { return f.status === "waiting" || f.status === "failed"; });
+  btn.disabled = converting || files.length === 0 || !anyTodo;
+  btn.textContent = converting ? t("converting") : t("convertBtn");
+}
+
+function setOverall(msg) { document.getElementById("overallStatus").textContent = msg || ""; }
+
+function addFiles(list) {
+  var added = false;
+  Array.prototype.forEach.call(list, function (file) {
+    if (!/\.pdf$/i.test(file.name)) { setOverall(t("errNotPdf")); return; }
+    if (file.size > MAX_BYTES) { setOverall(t("errTooBig")); return; }
+    files.push({ file: file, status: "waiting", url: null, outName: null, error: null });
+    added = true;
+  });
+  if (added) setOverall("");
+  renderList();
+}
+
+function loadScript(src) {
+  return new Promise(function (resolve, reject) {
+    var s = document.createElement("script");
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+var libsLoaded = false;
+function ensureBrowserLibs() {
+  if (libsLoaded) return Promise.resolve();
+  return loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js").then(function () {
+    if (window.pdfjsLib) window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    return loadScript("https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.js");
+  }).then(function () {
+    if (!window.pdfjsLib || !window.docx) throw new Error("libs");
+    libsLoaded = true;
+  });
+}
+
+function isCJK(ch) { return /[\u2e80-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(ch); }
+function joinLine(items) {
+  var out = "";
+  items.forEach(function (it, idx) {
+    if (idx > 0) {
+      var prev = items[idx - 1].str, cur = it.str;
+      if (prev && cur && !isCJK(prev.slice(-1)) && !isCJK(cur.charAt(0))) out += " ";
+    }
+    out += it.str;
+  });
+  return out;
+}
+
+function browserConvert(f) {
+  return f.file.arrayBuffer().then(function (buf) {
+    return window.pdfjsLib.getDocument({ data: buf }).promise;
+  }).then(function (pdf) {
+    var pageJobs = [];
+    for (var p = 1; p <= pdf.numPages; p++) pageJobs.push(pdf.getPage(p));
+    return Promise.all(pageJobs);
+  }).then(function (pages) {
+    var jobs = pages.map(function (page) { return page.getTextContent(); });
+    return Promise.all(jobs);
+  }).then(function (pageContents) {
+    var children = [];
+    pageContents.forEach(function (tc, pi) {
+      var items = tc.items.slice().sort(function (a, b) {
+        var dy = b.transform[5] - a.transform[5];
+        return dy !== 0 ? dy : a.transform[4] - b.transform[4];
+      });
+      var lines = [], curLine = [], curY = null;
+      items.forEach(function (it) {
+        if (!it.str) return;
+        var y = it.transform[5];
+        if (curY === null || Math.abs(y - curY) > 4) { if (curLine.length) lines.push(curLine); curLine = []; curY = y; }
+        curLine.push(it);
+      });
+      if (curLine.length) lines.push(curLine);
+      lines.forEach(function (line) {
+        var text = joinLine(line.slice().sort(function (a, b) { return a.transform[4] - b.transform[4]; }));
+        if (text.trim()) children.push(new window.docx.Paragraph({ children: [new window.docx.TextRun(text)] }));
+      });
+      if (pi < pageContents.length - 1) children.push(new window.docx.Paragraph({ children: [new window.docx.PageBreak()] }));
+    });
+    var doc = new window.docx.Document({ sections: [{ children: children }] });
+    return window.docx.Packer.toBlob(doc);
+  }).then(function (blob) {
+    return { blob: blob, name: stemOf(f.file.name) + ".docx" };
+  });
+}
+
+function serverConvert(f) {
+  var fd = new FormData();
+  fd.append("file", f.file);
+  return fetch(API_BASE + "/api/convert", { method: "POST", body: fd }).then(function (res) {
+    if (!res.ok) throw new Error("http " + res.status);
+    return res.blob();
+  }).then(function (blob) {
+    return { blob: blob, name: stemOf(f.file.name) + ".docx" };
+  });
+}
+
+function convertAll() {
+  if (files.length === 0) { setOverall(t("errNoFile")); return; }
+  var todo = files.filter(function (f) { return f.status === "waiting" || f.status === "failed"; });
+  if (todo.length === 0) return;
+  converting = true; setOverall(""); updateConvertBtn();
+  var chain = Promise.resolve();
+  if (serverMode === false) chain = chain.then(ensureBrowserLibs).catch(function () {
+    todo.forEach(function (f) { f.status = "failed"; f.error = t("errLibs"); });
+    renderList(); throw new Error("libs");
+  });
+  todo.forEach(function (f) {
+    chain = chain.then(function () {
+      f.status = "converting"; f.error = null; renderList();
+      var job = serverMode ? serverConvert(f) : browserConvert(f);
+      return job.then(function (out) {
+        f.url = URL.createObjectURL(out.blob); f.outName = out.name; f.status = "done";
+      }).catch(function () {
+        f.status = "failed"; f.error = t("errConvertFailed");
+      }).then(function () { renderList(); });
+    });
+  });
+  chain.then(function () {
+    converting = false; updateConvertBtn(); renderList();
+  }).catch(function () {
+    converting = false; updateConvertBtn(); renderList();
+  });
+}
+
+function checkServer() {
+  var ctrl = null;
+  try { ctrl = new AbortController(); setTimeout(function () { try { ctrl.abort(); } catch (e) {} }, 3000); } catch (e) {}
+  fetch(API_BASE + "/api/health", ctrl ? { signal: ctrl.signal } : {}).then(function (res) {
+    serverMode = res.ok; updateModeBadge();
+  }).catch(function () {
+    serverMode = false; updateModeBadge();
+  });
+}
+
+document.getElementById("langSel").addEventListener("change", function (e) { applyLang(e.target.value); });
+document.getElementById("pickBtn").addEventListener("click", function (e) { e.stopPropagation(); document.getElementById("fileInput").click(); });
+document.getElementById("dropzone").addEventListener("click", function () { document.getElementById("fileInput").click(); });
+document.getElementById("fileInput").addEventListener("change", function (e) { addFiles(e.target.files); e.target.value = ""; });
+document.getElementById("convertBtn").addEventListener("click", convertAll);
+document.getElementById("clearBtn").addEventListener("click", function () { files = []; setOverall(""); renderList(); });
+var dz = document.getElementById("dropzone");
+["dragenter", "dragover"].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add("over"); }); });
+["dragleave", "drop"].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove("over"); }); });
+dz.addEventListener("drop", function (e) { addFiles(e.dataTransfer.files); });
+["dragover", "drop"].forEach(function (ev) { document.addEventListener(ev, function (e) { e.preventDefault(); }); });
+
+var urlLang = null;
+try { urlLang = new URLSearchParams(window.location.search).get("lang"); } catch (e) {}
+var initialLang = (urlLang && I18N[urlLang]) ? urlLang : detectLang();
+document.getElementById("langSel").value = initialLang;
+applyLang(initialLang);
+checkServer();
+</script>
+</body>
+</html>
