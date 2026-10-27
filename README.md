@@ -5,14 +5,39 @@ A PDF to Word converter website: upload PDF files, convert them to editable
 the general structure of online converter pages (header, tool card, steps,
 features, FAQ); all copy on this site is original.
 
-## Conversion engine
+## Conversion engines
 
-Server-side conversion uses the open-source
-[pdf2docx](https://github.com/ArtifexSoftware/pdf2docx) library (MIT).
-The page auto-detects the backend: when the API answers, conversion runs on
-the server (high fidelity); when it does not, the page falls back to
-browser-side conversion (PDF.js text extraction + docx.js, text-focused,
-needs internet access for the CDN libraries).
+There are two server engines; the page detects which one answers
+`/api/health` and labels the mode badge accordingly.
+
+- **Full (FastAPI, local / Cloud Run):** `app/main.py` uses the open-source
+  [pdf2docx](https://github.com/ArtifexSoftware/pdf2docx) library (MIT)
+  with table reconstruction. See "Run locally" below.
+- **Slim (Vercel function):** `api/convert.py` uses PyMuPDF + python-docx
+  directly. It keeps font size / bold / italic and embeds images, but
+  output is text-focused with no table reconstruction, so complex
+  multi-column layouts come out linearized. This is the engine that fits
+  Vercel: pdf2docx's full dependency bundle (~300 MB) exceeds Vercel's
+  250 MB function-package limit, and opencv cannot be dropped because
+  pdf2docx imports cv2 at the top level of `common/algorithm.py`.
+
+When neither backend answers, the page falls back to browser-side
+conversion (PDF.js text extraction + docx.js, text-focused, needs
+internet access for the CDN libraries).
+
+## Deploy on Vercel
+
+1. In Vercel, import this repository (`zhongke0819/pdf-to-word`).
+2. Set **Output Directory** to `app/static` (the frontend lives there;
+   the repo root has no `index.html`).
+3. No environment variables are needed. `vercel.json` sets the convert
+   function timeout to 300 seconds (Hobby maximum); `requirements.txt`
+   installs the slim function's dependencies (PyMuPDF, python-docx,
+   python-multipart, roughly 130 MB total).
+4. Point your domain (e.g. `pdfemword.org`) at the Vercel project and
+   add the DNS records Vercel shows (A `@` for the apex, CNAME `www`).
+   The page's mode badge will read "Server conversion (slim,
+   text-focused)" once `/api/health` answers.
 
 ## Features
 

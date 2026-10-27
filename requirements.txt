@@ -1,0 +1,6 @@
+# Vercel Python function dependencies (slim bundle, ~130 MB).
+# Deliberately NOT pdf2docx: its full bundle (~300 MB with opencv/numpy)
+# exceeds Vercel's 250 MB function-package limit.
+PyMuPDF
+python-docx
+python-multipart
