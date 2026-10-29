@@ -60,6 +60,12 @@
   .file-row .fstatus.done { color:var(--green); font-weight:600; }
   .file-row .fstatus.failed { color:var(--red); font-weight:600; }
   .file-row .grow { flex:1; }
+  .pwrap { flex-basis:100%; margin-top:2px; }
+  .pbar { height:8px; background:#eef1f6; border-radius:99px; overflow:hidden; }
+  .pbar > i { display:block; height:100%; width:0%; background:linear-gradient(90deg,#e5322d,#f87171); border-radius:99px; transition:width .15s ease; }
+  .pbar.indet > i { width:35% !important; animation:pbslide 1.1s linear infinite; }
+  @keyframes pbslide { 0% { margin-left:-35%; } 100% { margin-left:100%; } }
+  .plabel { font-size:12px; color:var(--muted); margin-top:5px; }
   .actions { margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
   .note { margin-top:18px; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:13px 16px; font-size:14px; }
   .note b { display:block; margin-bottom:4px; }
@@ -152,7 +158,7 @@ en: {
   dropTitle: "Drop PDF files here", dropSub: "or", selectBtn: "Select PDF files",
   convertBtn: "Convert to Word", converting: "Converting…",
   downloadBtn: "Download Word", clearBtn: "Clear all",
-  statusWaiting: "Waiting", statusConverting: "Converting…", statusDone: "Done", statusFailed: "Failed",
+  statusWaiting: "Waiting", uploading: "Uploading…", statusConverting: "Converting…", statusDone: "Done", statusFailed: "Failed",
   ocrTitle: "About scanned PDFs",
   ocrText: "This tool works with PDFs that contain selectable text. Scanned PDFs (pages that are just images) need OCR, which is not supported yet.",
   stepsTitle: "How to convert PDF to Word",
@@ -196,7 +202,7 @@ zh: {
   dropTitle: "把 PDF 文件拖到这里", dropSub: "或者", selectBtn: "选择 PDF 文件",
   convertBtn: "转换成 Word", converting: "转换中…",
   downloadBtn: "下载 Word", clearBtn: "全部清除",
-  statusWaiting: "等待中", statusConverting: "转换中…", statusDone: "已完成", statusFailed: "失败",
+  statusWaiting: "等待中", uploading: "上传中…", statusConverting: "转换中…", statusDone: "已完成", statusFailed: "失败",
   ocrTitle: "关于扫描件 PDF",
   ocrText: "本站只支持含可选文字的 PDF。扫描件（页面只是图片、选不中文字）需要先 OCR，目前暂不支持。",
   stepsTitle: "PDF 转 Word 怎么用",
@@ -240,7 +246,7 @@ es: {
   dropTitle: "Suelta aquí tus archivos PDF", dropSub: "o", selectBtn: "Seleccionar archivos PDF",
   convertBtn: "Convertir a Word", converting: "Convirtiendo…",
   downloadBtn: "Descargar Word", clearBtn: "Borrar todo",
-  statusWaiting: "En espera", statusConverting: "Convirtiendo…", statusDone: "Listo", statusFailed: "Error",
+  statusWaiting: "En espera", uploading: "Subiendo…", statusConverting: "Convirtiendo…", statusDone: "Listo", statusFailed: "Error",
   ocrTitle: "Sobre los PDF escaneados",
   ocrText: "Esta herramienta funciona con PDF que contienen texto seleccionable. Los PDF escaneados (páginas que son solo imágenes) necesitan OCR, que aún no está disponible.",
   stepsTitle: "Cómo convertir PDF a Word",
@@ -284,7 +290,7 @@ pt: {
   dropTitle: "Solte os arquivos PDF aqui", dropSub: "ou", selectBtn: "Selecionar arquivos PDF",
   convertBtn: "Converter para Word", converting: "Convertendo…",
   downloadBtn: "Baixar Word", clearBtn: "Limpar tudo",
-  statusWaiting: "Aguardando", statusConverting: "Convertendo…", statusDone: "Pronto", statusFailed: "Falha",
+  statusWaiting: "Aguardando", uploading: "Enviando…", statusConverting: "Convertendo…", statusDone: "Pronto", statusFailed: "Falha",
   ocrTitle: "Sobre PDFs digitalizados",
   ocrText: "Esta ferramenta funciona com PDFs que contêm texto selecionável. PDFs digitalizados (páginas que são apenas imagens) precisam de OCR, que ainda não é suportado.",
   stepsTitle: "Como converter PDF para Word",
@@ -328,7 +334,7 @@ fr: {
   dropTitle: "Déposez vos fichiers PDF ici", dropSub: "ou", selectBtn: "Sélectionner des fichiers PDF",
   convertBtn: "Convertir en Word", converting: "Conversion en cours…",
   downloadBtn: "Télécharger Word", clearBtn: "Tout effacer",
-  statusWaiting: "En attente", statusConverting: "Conversion en cours…", statusDone: "Terminé", statusFailed: "Échec",
+  statusWaiting: "En attente", uploading: "Envoi en cours…", statusConverting: "Conversion en cours…", statusDone: "Terminé", statusFailed: "Échec",
   ocrTitle: "À propos des PDF numérisés",
   ocrText: "Cet outil fonctionne avec les PDF contenant du texte sélectionnable. Les PDF numérisés (pages qui ne sont que des images) nécessitent l'OCR, qui n'est pas encore pris en charge.",
   stepsTitle: "Comment convertir un PDF en Word",
@@ -372,7 +378,7 @@ de: {
   dropTitle: "PDF-Dateien hierher ziehen", dropSub: "oder", selectBtn: "PDF-Dateien auswählen",
   convertBtn: "In Word umwandeln", converting: "Wird umgewandelt…",
   downloadBtn: "Word herunterladen", clearBtn: "Alles löschen",
-  statusWaiting: "Wartend", statusConverting: "Wird umgewandelt…", statusDone: "Fertig", statusFailed: "Fehlgeschlagen",
+  statusWaiting: "Wartend", uploading: "Wird hochgeladen…", statusConverting: "Wird umgewandelt…", statusDone: "Fertig", statusFailed: "Fehlgeschlagen",
   ocrTitle: "Über gescannte PDFs",
   ocrText: "Dieses Tool arbeitet mit PDFs, die auswählbaren Text enthalten. Gescannte PDFs (Seiten, die nur Bilder sind) benötigen OCR, das noch nicht unterstützt wird.",
   stepsTitle: "So wandeln Sie PDF in Word um",
@@ -492,6 +498,15 @@ function renderList() {
     st.textContent = f.status === "done" ? t("statusDone") : f.status === "failed" ? (f.error || t("statusFailed")) : f.status === "converting" ? t("statusConverting") : t("statusWaiting");
     var grow = document.createElement("div"); grow.className = "grow";
     row.appendChild(info); row.appendChild(st); row.appendChild(grow);
+    if (f.status === "converting") {
+      var pw = document.createElement("div"); pw.className = "pwrap";
+      var pb = document.createElement("div"); pb.className = "pbar";
+      var fill = document.createElement("i"); pb.appendChild(fill);
+      var pl = document.createElement("div"); pl.className = "plabel";
+      pw.appendChild(pb); pw.appendChild(pl); row.appendChild(pw);
+      f._pbar = pb; f._fill = fill; f._plabel = pl;
+      paintProgress(f);
+    }
     if (f.status === "done" && f.url) {
       var dl = document.createElement("a"); dl.className = "btn btn-green"; dl.href = f.url; dl.download = f.outName; dl.textContent = t("downloadBtn");
       row.appendChild(dl);
@@ -505,6 +520,19 @@ function renderList() {
   });
   document.getElementById("clearBtn").classList.toggle("hidden", files.length === 0);
   updateConvertBtn();
+}
+
+function paintProgress(f) {
+  if (!f._fill || !f._plabel || !f._pbar) return;
+  if (f.phase === "upload") {
+    f._pbar.classList.remove("indet");
+    var p = Math.max(0, Math.min(100, Math.round(f.progress || 0)));
+    f._fill.style.width = p + "%";
+    f._plabel.textContent = t("uploading") + " " + p + "%";
+  } else {
+    f._pbar.classList.add("indet");
+    f._plabel.textContent = t("statusConverting");
+  }
 }
 
 function updateConvertBtn() {
@@ -521,7 +549,7 @@ function addFiles(list) {
   Array.prototype.forEach.call(list, function (file) {
     if (!/\.pdf$/i.test(file.name)) { setOverall(t("errNotPdf")); return; }
     if (file.size > MAX_BYTES) { setOverall(t("errTooBig")); return; }
-    files.push({ file: file, status: "waiting", url: null, outName: null, error: null });
+    files.push({ file: file, status: "waiting", url: null, outName: null, error: null, progress: 0, phase: null });
     added = true;
   });
   if (added) setOverall("");
@@ -581,6 +609,7 @@ function joinLine(items) {
 }
 
 function browserConvert(f) {
+  f.phase = "process"; paintProgress(f);
   return f.file.arrayBuffer().then(function (buf) {
     return window.pdfjsLib.getDocument({ data: buf }).promise;
   }).then(function (pdf) {
@@ -619,13 +648,29 @@ function browserConvert(f) {
 }
 
 function serverConvert(f) {
-  var fd = new FormData();
-  fd.append("file", f.file);
-  return fetch(API_BASE + "/api/convert", { method: "POST", body: fd }).then(function (res) {
-    if (!res.ok) { var e = new Error("http " + res.status); e.status = res.status; throw e; }
-    return res.blob();
-  }).then(function (blob) {
-    return { blob: blob, name: stemOf(f.file.name) + ".docx" };
+  // XMLHttpRequest (not fetch) so we can report upload progress.
+  return new Promise(function (resolve, reject) {
+    var fd = new FormData();
+    fd.append("file", f.file);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", API_BASE + "/api/convert", true);
+    xhr.responseType = "blob";
+    f.phase = "upload"; f.progress = 0; paintProgress(f);
+    xhr.upload.onprogress = function (ev) {
+      if (ev.lengthComputable && ev.total > 0) {
+        f.progress = ev.loaded / ev.total * 100; paintProgress(f);
+      }
+    };
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        f.phase = "process"; f.progress = 100; paintProgress(f);
+        resolve({ blob: xhr.response, name: stemOf(f.file.name) + ".docx" });
+      } else {
+        var e = new Error("http " + xhr.status); e.status = xhr.status; reject(e);
+      }
+    };
+    xhr.onerror = function () { reject(new Error("network")); };
+    xhr.send(fd);
   });
 }
 
@@ -650,7 +695,7 @@ function convertAll() {
   });
   todo.forEach(function (f) {
     chain = chain.then(function () {
-      f.status = "converting"; f.error = null; renderList();
+      f.status = "converting"; f.error = null; f.progress = 0; f.phase = null; renderList();
       var job = serverMode ? serverConvert(f) : browserConvert(f);
       return job.then(function (out) {
         f.url = URL.createObjectURL(out.blob); f.outName = out.name; f.status = "done";
