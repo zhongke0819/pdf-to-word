@@ -179,6 +179,7 @@ en: {
   errNotPdf: "Only PDF files are accepted.", errTooBig: "File exceeds 50 MB.",
   errNoFile: "Please add at least one PDF file first.",
   errConvertFailed: "Conversion failed. Please try another file.",
+  errTooBigServer: "File too large for the server (limit ~4.5 MB) and browser conversion also failed. Try a smaller file.",
   errLibs: "Browser conversion libraries failed to load. Check your connection and try again — or wait a minute and retry, the server engine may just be waking up.",
   docTitle: "PDF to Word — Convert PDF to Editable Word Online",
   docDesc: "Convert PDF files into editable Word documents online for free. No sign-up needed, works in your browser.",
@@ -222,6 +223,7 @@ zh: {
   errNotPdf: "只接受 PDF 文件。", errTooBig: "文件超过 50MB。",
   errNoFile: "请先添加至少一个 PDF 文件。",
   errConvertFailed: "转换失败，请换个文件再试。",
+  errTooBigServer: "文件超过服务器上限（约 4.5MB），浏览器转换也失败了，请换个小一点的文件再试。",
   errLibs: "浏览器转换所需的在线库加载失败，请检查网络后重试；也可能是服务器正在唤醒，稍等一分钟再试。",
   docTitle: "PDF 转 Word — 免费在线把 PDF 转换成可编辑 Word",
   docDesc: "免费在线把 PDF 文件转换成可编辑的 Word 文档，无需注册，打开浏览器就能用。",
@@ -265,6 +267,7 @@ es: {
   errNotPdf: "Solo se aceptan archivos PDF.", errTooBig: "El archivo supera los 50 MB.",
   errNoFile: "Añade al menos un archivo PDF primero.",
   errConvertFailed: "La conversión falló. Prueba con otro archivo.",
+  errTooBigServer: "El archivo supera el límite del servidor (~4,5 MB) y la conversión en el navegador también falló. Prueba con un archivo más pequeño.",
   errLibs: "No se pudieron cargar las librerías de conversión en el navegador. Revisa tu conexión e inténtalo de nuevo; o espera un minuto y reintenta, el servidor podría estar despertando.",
   docTitle: "PDF a Word — Convierte PDF a Word editable en línea",
   docDesc: "Convierte archivos PDF en documentos de Word editables en línea y gratis, sin registro.",
@@ -308,6 +311,7 @@ pt: {
   errNotPdf: "Somente arquivos PDF são aceitos.", errTooBig: "O arquivo excede 50 MB.",
   errNoFile: "Adicione pelo menos um arquivo PDF primeiro.",
   errConvertFailed: "A conversão falhou. Tente outro arquivo.",
+  errTooBigServer: "O arquivo excede o limite do servidor (~4,5 MB) e a conversão no navegador também falhou. Tente um arquivo menor.",
   errLibs: "Não foi possível carregar as bibliotecas de conversão do navegador. Verifique sua conexão e tente novamente; ou aguarde um minuto — o servidor pode estar despertando.",
   docTitle: "PDF para Word — Converta PDF em Word editável on-line",
   docDesc: "Converta arquivos PDF em documentos do Word editáveis on-line e grátis, sem cadastro.",
@@ -351,6 +355,7 @@ fr: {
   errNotPdf: "Seuls les fichiers PDF sont acceptés.", errTooBig: "Le fichier dépasse 50 Mo.",
   errNoFile: "Ajoutez d'abord au moins un fichier PDF.",
   errConvertFailed: "La conversion a échoué. Essayez un autre fichier.",
+  errTooBigServer: "Fichier trop volumineux pour le serveur (limite ~4,5 Mo), et la conversion dans le navigateur a également échoué. Essayez un fichier plus petit.",
   errLibs: "Impossible de charger les bibliothèques de conversion du navigateur. Vérifiez votre connexion et réessayez ; le serveur est peut-être en train de démarrer, attendez une minute.",
   docTitle: "PDF vers Word — Convertissez un PDF en Word modifiable en ligne",
   docDesc: "Convertissez des fichiers PDF en documents Word modifiables en ligne, gratuitement et sans inscription.",
@@ -394,6 +399,7 @@ de: {
   errNotPdf: "Nur PDF-Dateien werden akzeptiert.", errTooBig: "Die Datei überschreitet 50 MB.",
   errNoFile: "Fügen Sie zuerst mindestens eine PDF-Datei hinzu.",
   errConvertFailed: "Die Konvertierung ist fehlgeschlagen. Versuchen Sie es mit einer anderen Datei.",
+  errTooBigServer: "Die Datei überschreitet das Server-Limit (~4,5 MB), und auch die Browser-Konvertierung ist fehlgeschlagen. Versuchen Sie es mit einer kleineren Datei.",
   errLibs: "Die Browser-Konvertierungsbibliotheken konnten nicht geladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut — oder warten Sie eine Minute, der Server wacht möglicherweise gerade auf.",
   docTitle: "PDF zu Word — PDF kostenlos online in bearbeitbares Word umwandeln",
   docDesc: "Wandeln Sie PDF-Dateien kostenlos online in bearbeitbare Word-Dokumente um, ohne Anmeldung.",
@@ -616,7 +622,7 @@ function serverConvert(f) {
   var fd = new FormData();
   fd.append("file", f.file);
   return fetch(API_BASE + "/api/convert", { method: "POST", body: fd }).then(function (res) {
-    if (!res.ok) throw new Error("http " + res.status);
+    if (!res.ok) { var e = new Error("http " + res.status); e.status = res.status; throw e; }
     return res.blob();
   }).then(function (blob) {
     return { blob: blob, name: stemOf(f.file.name) + ".docx" };
@@ -648,7 +654,17 @@ function convertAll() {
       var job = serverMode ? serverConvert(f) : browserConvert(f);
       return job.then(function (out) {
         f.url = URL.createObjectURL(out.blob); f.outName = out.name; f.status = "done";
-      }).catch(function () {
+      }).catch(function (err) {
+        // Vercel caps function request/response bodies at 4.5MB (all plans);
+        // a 413 is rejected by the platform before our code runs, so retry
+        // this file with browser-side conversion instead of failing outright.
+        if (serverMode && err && err.status === 413) {
+          return ensureBrowserLibs().then(function () { return browserConvert(f); }).then(function (out) {
+            f.url = URL.createObjectURL(out.blob); f.outName = out.name; f.status = "done";
+          }).catch(function () {
+            f.status = "failed"; f.error = t("errTooBigServer");
+          });
+        }
         f.status = "failed"; f.error = t("errConvertFailed");
       }).then(function () { renderList(); });
     });
